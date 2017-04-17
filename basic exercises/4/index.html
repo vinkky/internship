@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>4</title>
+</head>
+<body>
+
+<script>
+
+function doDate()
+{
+    var str = "";
+
+    var now = new Date();
+if (now.getSeconds() >= 10){
+    str +=  now.getHours() +":" + now.getMinutes() + ":" + now.getSeconds();
+    console.log(str);
+    }
+else {
+    str +=  now.getHours() +":" + now.getMinutes() + ":0" + now.getSeconds();
+    console.log(str);
+}
+}
+
+setInterval(doDate, 1000);
+    
+</script>
+
+</body>
+</html>

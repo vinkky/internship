@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3</title>
+</head>
+<body>
+
+<script>
+
+
+function repeater(string)
+{
+  if(string.length==0)
+    return false;
+
+  var char = string.charAt(0);
+  if(string.lastIndexOf(char) == 0)
+    return char;
+
+  for(var i = 1; i < string.length-1; i++)
+  {
+    char = string.charAt(i);
+    if(string.lastIndexOf(char)==i && string.indexOf(char)==i)
+      return char;
+  }
+
+  char = string.charAt(string.length-1);
+  if(string.indexOf(char)==string.length-1)
+    return char;
+
+  return false;
+}
+console.log(repeater("asdasfafghj"));
+    
+</script>
+
+</body>
+</html>
