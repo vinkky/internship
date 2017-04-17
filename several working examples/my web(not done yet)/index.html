@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>I make web</title>
+    <meta name="author" content="Tautvydas Būda">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/responsive-nav.js"></script>
+    <script src="js/sendform.js"></script>
+  </head>
+  <body>
+
+    <header>
+      <a href="#home" class="logo" data-scroll><img src="img/brand-img.png"></a>
+      <nav class="nav-collapse">
+        <ul>
+          <li class="menu-item active"><a href="#home" data-scroll>Home</a></li>
+          <li class="menu-item"><a href="#about" data-scroll>About</a></li>
+          <li class="menu-item"><a href="#projects" data-scroll>Projects</a></li>
+          <li class="menu-item"><a href="#contact" data-scroll>Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section id="home"> 
+     <div id="blokas1">
+         <div>
+         <span id="tekstas">
+             <h1><span style="color:#e8977f">Hello.</span ><span style="color:#474e5d"> My name is Tautvydas</span></h1>
+             <p>I'm a front-end developer based in Vilnius, Lithuania</p>
+             <p>I'm currently open to work and update my portfolio</p>
+         </span>
+         </div>
+     </div>
+     <div id="blokas2">
+         <img src="img/main-img3.png">
+     </div>
+    <div id="blokas3">
+        <a class="btn blue" href="#about" data-scroll>Get to know me!</a>
+    </div>
+    </section>
+
+    <section id="about">
+      <h1>About</h1>
+    </section>
+
+    <section id="projects">
+      <h1>Projects</h1>
+    </section>
+
+    <section id="contact">
+      <h1>Contact</h1>
+      <form id="my_form" onsubmit="submitForm(); return false;">
+          <p><input id="n" placeholder="Name" required></p>
+          <p><input id="e" placeholder="Email Address" type="email" required></p>
+          <textarea id="m" placeholder="write your message here" rows="10" required></textarea>
+          <p><input id="mybtn" type="submit" value="Submit Form"> <span id="status"></span></p>
+    </form>
+    <footer>
+       <p>  &#169; 2017 Tautvydas Būda</p>
+    </footer>
+    </section>
+    
+    <script src="js/fastclick.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/fixed-responsive-nav.js"></script>
+  </body>
+</html>

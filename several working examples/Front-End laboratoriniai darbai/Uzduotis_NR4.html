@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<meta name="author" content="Tautvydas Buda">
+	</head>
+	<body>
+		<div>
+			<form>
+				<div>
+					<!-- -->
+					<label>Markë</label>
+					<select name="marke"></select>
+				</div>
+				<div>
+					<label>Modelis</label>
+					<select name="modelis"></select>
+				</div>
+				<div>
+					<div><label>Privalumai:</label></div>
+					<div>
+						<label>
+							<input type="checkbox" name="params[]" value="abs"/> ABS
+						</label>
+						<label>
+							<input type="checkbox" name="params[]" value="abs2"/> ABS2
+						</label>
+						<label>
+							<input type="checkbox" name="params[]" value="abs3"/> ABS3
+						</label>
+						<label>
+							<input type="checkbox" name="params[]" value="abs4"/> ABS4
+						</label>
+						<label>
+							<input type="checkbox" name="params[]" value="abs5"/> ABS5
+						</label>
+						<label>
+							<input type="checkbox" name="params[]" value="abs6"/> ABS6
+						</label>
+					</div>
+				</div>
+				<div>
+					<div><label>Tipas:</label></div>
+					<div>
+						<label><input name="tipas" type="radio" value="naujas"/>Naujas</label>
+						<label><input name="tipas" type="radio" value="senas"/>Senas</label>
+						<label><input name="tipas" type="radio" value="nevaziuojantis"/>Nevaziuojantis</label>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script>
+			var markes = ["Marke 1", "Marke 2", "Marke 3"];
+			var modeliai = [
+				[
+					"Marke 1 modelis 1",
+					"Marke 1 modelis 2",
+					"Marke 1 modelis 3",
+					"Marke 1 modelis 4",
+					"Marke 1 modelis 5"
+				],
+				["Marke 2 modelis 1", "Marke 2 modelis 2", "Marke 2 modelis 3", "Marke 2 modelis 4", "Marke 2 modelis 5"],
+				["Marke 3 modelis 1", "Marke 3 modelis 2", "Marke 3 modelis 3", "Marke 3 modelis 4", "Marke 3 modelis 5"],
+			];
+			
+			var marke = document.getElementsByName('marke')[0];
+			var modelis = document.getElementsByName('modelis')[0];
+			
+			for (var i = 0; i < markes.length; i++) {
+				// var option = document.createElement('option');
+				// option.value = i;
+				// option.text = markes[i];
+				
+				// new Option(markes[i], i) -> option elemento objekta
+				marke.appendChild(new Option(markes[i], i));
+			}
+			
+			function F1() {
+				var selectedIndex = marke.selectedIndex;
+				var modeliai = window.modeliai[selectedIndex];
+				
+				modelis.innerHTML = '';
+
+				for (var i = 0; i < modeliai.length; i++) {
+					modelis.appendChild(new Option(modeliai[i], i));
+				}
+			}
+
+			F1();
+			
+			marke.addEventListener('change', F1, false);
+			
+			// var checkbox = document.getElementsByName('params[]');
+			var checkbox = document.querySelectorAll('input[type="checkbox"]');
+			
+			for (i = 0; i < checkbox.length; i++) {
+				checkbox[i].addEventListener('click', F2, false);
+			}
+			
+			function F2() {
+				var count = 0;
+				
+				for (var i = 0; i < checkbox.length; i++) {
+					if (checkbox[i].checked) {
+						count++;
+					}
+				}
+				
+				if (count > 4) {
+					alert('Test');
+					event.preventDefault();
+				}
+			}
+			
+			console.log(marke);
+		</script>
+	</body>
+</html>

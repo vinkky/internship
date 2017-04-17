@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<style>
+        img {
+    width: 600px;
+    height :auto;
+}</style>
+	</head>
+	<body>
+	<h1>listas 1</h1>
+	<ul id="users-a">
+	    <li >braske</li>
+	    <li>bananas</li>
+	    <li>jogurtas</li>
+	    <li>lapas</li>
+	</ul>
+	
+	<h1>listas 2</h1>
+	<ul id="users-b">
+	    <li>braske</li>
+	</ul>
+	 <div id="divas"></div>
+	 <div id="slide-show"></div>
+<script>
+            
+       var usersA = document.getElementById("users-a");
+var usersB = document.getElementById("users-b");
+var onclickA;
+var onclickB = function() {
+        usersA.appendChild(this);
+        this.onclick = onclickA;
+        return false;
+    };
+onclickA = function() {
+        usersB.appendChild(this);
+        this.onclick = onclickB;
+        return false;
+    };
+
+for (var i=0; i < usersA.getElementsByTagName("li").length; i++)
+    usersA.getElementsByTagName("li")[i].onclick = onclickA;
+for (var i=0; i < usersB.getElementsByTagName("li").length; i++)      
+    usersB.getElementsByTagName("li")[i].onclick = onclickB;
+    
+
+var ondbA = function (){
+    if (usersA.hasChildNodes()) {
+    this.parentNode.removeChild(this);
+          this.ondblclick = ondbA;
+        return false;
+}
+}
+var ondbB = function (){
+    if (usersB.hasChildNodes()) {
+    this.parentNode.removeChild(this);
+          this.ondblclick = ondblB;
+        return false;
+}
+}
+for (var i=0; i < usersA.getElementsByTagName("li").length; i++)
+    usersA.getElementsByTagName("li")[i].ondblclick = ondbA;
+for (var i=0; i < usersB.getElementsByTagName("li").length; i++)      
+    usersB.getElementsByTagName("li")[i].ondblclick = ondbB;
+var images = [
+    'img1.jpeg',
+    'img2.jpeg',
+    'img3.jpeg'
+];
+                 
+var speed = 2; //sec
+var slideShow = document.getElementById('slide-show');
+var img = document.createElement('img');
+            
+slideShow.appendChild(img);
+
+var rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+        return setTimeout(callback, 1000 / 60);
+    };
+
+var count;
+
+function changeImage(timeStamp) {
+    count = Math.floor(timeStamp / 1000 / speed);
+
+    while (count > 2) {
+        count -= 3;
+    }
+
+    img.src = images[count];
+
+    rAF(changeImage);
+}
+
+rAF(changeImage);
+            
+		</script>
+	</body>
+</html>

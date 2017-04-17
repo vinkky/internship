@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Uzduotis nr2</title>
+		<meta charset="UTF-8"/>
+        <meta name="author" content="Tautvydas Būda">
+		<style>
+			label{
+				
+				display: block;
+			}
+			input{
+				width: 280px;
+				margin: 10px 0px 10px 10px;;
+			}
+			div{
+				width: 300px;
+			}
+			#redLabel{
+				background-color: red;
+				color: white;
+				font-family: Arial;
+				font-weight: bold;
+				padding: 10px 0px 10px 10px;;
+			}
+			#grnLabel{
+				background-color: green;
+				color: white;
+				font-family: Arial;
+				font-weight: bold;
+				padding: 10px 0px 10px 10px;;
+			}
+			#bluLabel{
+				background-color: blue;
+				color: white;
+				font-family: Arial;
+				font-weight: bold;
+				padding: 10px 0px 10px 10px;;
+			}
+			#redBlock{
+				border: 1px solid red;
+				border-radius: 4px;
+				margin: 10px 0px 10px 0px;
+			}
+			#grnBlock{
+				border: 1px solid green;
+				border-radius: 4px;
+				margin: 10px 0px 10px 0px;
+			}
+			#bluBlock{
+				border: 1px solid blue;
+				border-radius: 4px;
+				margin: 10px 0px 10px 0px;
+			}
+			form{
+				padding: 40px;
+				width: 300px;
+				border: 1px solid black;
+			}
+			form:hover > div{
+				opacity: 0.2;
+			}
+			div:hover{
+				animation: animacija 1s forwards;
+			}
+			@-webkit-keyframes animacija{
+				0%{
+					opacity: 0.2;
+					-webkit-transform: rotateX(0deg);
+				}
+				100%{
+					opacity: 1;
+					-webkit-transform: rotateX(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<form >
+			<div id="redBlock">
+				<label for="red" id="redLabel">Raudona</label>
+				<input type="range" min="0" max="255" value="0" id="red" oninput="myFunction()"><br/>
+			</div>
+			<div id="grnBlock">
+				<label for="grn" id="grnLabel">Žalia</label>
+				<input type="range" min="0" max="255" value="0" id="grn" oninput="myFunction()"><br/>
+			</div>
+			<div id="bluBlock">
+				<label for="blu" id="bluLabel">Mėlyna</label>
+				<input type="range" min="0" max="255" value="0" id="blu" oninput="myFunction()"><br/>
+			</div>
+		</form>
+		<script>
+			var spalvosKodoBlokas = document.createElement("p");
+			var spalvosKodas = new Array();
+			var spalvosKodasTekstas = document.createTextNode("");
+			var spalvosKodasPavadinimas = document.createTextNode("Spalvos kodas: ");
+			spalvosKodoBlokas.appendChild(spalvosKodasTekstas);
+			document.body.appendChild(spalvosKodoBlokas);
+			function myFunction(){
+				spalvosKodas[0] = document.getElementById("red").value;
+				spalvosKodas[1] = document.getElementById("grn").value;
+				spalvosKodas[2] = document.getElementById("blu").value;
+				spalvosKodasTekstas.nodeValue = "rgb(" + spalvosKodas[0] + ", " + spalvosKodas[1] + ", " + spalvosKodas[2] + ")";
+				document.getElementsByTagName("form")[0].style.backgroundColor = spalvosKodoBlokas.innerHTML;
+			}
+			
+			//
+			
+		</script>
+	</body>
+</html>

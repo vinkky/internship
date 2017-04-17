@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tautvydas Būda dom uzduotys</title>
+    <meta name="author" content="Tautvydas Būda">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+<body>
+<!-- 1 uzduotis -->
+    <div id='div'>
+        <p>0-12345678901234567890123456789</p>      
+        <p>1-012345678901234567890123456789</p>
+        <p>2-012345678901234567890123456789</p>
+        <p>3-012345678901234567890123456789</p>
+        <p>4-012345678901234567890123456789</p>
+        <p>5-012345678901234567890123456789</p>
+        <p>6-012345678901234567890123456789</p>
+        <p>7-012345678901234567890123456789dsf</p>
+        <p>8-012345678901234567890123456789</p>
+        <p>9-012345678901234567890123456789sdf</p>
+        <p>10-01234dsfdf</p>
+        <p>11-012345678901234567890123456789dsfdsfdsf</p>
+    </div>
+<script>
+    var div = document.getElementById("div"); //gauname pagrindini div elementa
+    for (var j=0; j<12; j++){
+            div.getElementsByTagName("p")[j].addEventListener('click', doubler);
+    }
+    var tekstomasyvas =[]; //apsirasome deksto masyva skirta kiekvieno p pirmiems 10 simboliu gauti
+    for (var i=0; i<12; i++){
+        tekstomasyvas[i] = div.getElementsByTagName("p")[i].textContent;
+        tekstomasyvas[i]= tekstomasyvas[i].substring(0,10);
+    }
+    var laikinas = []; //sis masyvas reprezentuos kiekvienu triju p simbolius, skirtus h elementams
+    var parcounter = 0; //sis elementas skaiciuos, kelintam H elementui priskirti teksta
+    var headertext = []; //sis elementas reprezentuos H elemento teksta
+    
+    for (var i=0; i<12; i++){
+        if (i==0 || (i%3)==0){ 
+            laikinas[1] = tekstomasyvas[i];
+            laikinas[2] = tekstomasyvas[i+1];
+            laikinas[3] = tekstomasyvas[i+2]; 
+            headertext[parcounter] = laikinas.join(""); 
+            var newH1 = document.createElement("H1"); 
+            var newContent = document.createTextNode(headertext[parcounter]); 
+            newH1.appendChild(newContent);
+            div.insertBefore(newH1,div.getElementsByTagName("p")[i]); 
+            parcounter++; 
+        }
+    }
+    setInterval(remover, 500);
+
+    function doubler(){
+        var element = event.currentTarget;
+        var partex = element.textContent;
+        var len = partex.length;
+        if(len <1000){ 
+            element.textContent=partex + "\n"  + partex+ "\n";
+            }   
+        }
+        function remover(){
+            var paragraf =[];
+            for (var i = 0; i< 12; i++){
+                paragraf[i] = div.getElementsByTagName("p")[i];
+                var tmptxt = paragraf[i].textContent;
+                if(tmptxt.length>10){
+                    console.log(tmptxt.length);
+                    tmptxt = tmptxt.substring(0,tmptxt.length-1);
+                    paragraf[i].textContent = tmptxt;
+        }
+
+        if(tmptxt.length>300){
+            paragraf[i].style.color="blue";
+        }
+        if(tmptxt.length<=300 && tmptxt.length>20){
+            paragraf[i].style.color="black";
+        }
+        if(tmptxt.length<20){
+            paragraf[i].style.color="red";
+        }
+    }
+}
+</script>
+</body>
+</html>
