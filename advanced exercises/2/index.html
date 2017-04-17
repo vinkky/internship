@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>advanced 2</title>
+    <style>canvas {border: 1px solid blue;}</style>
+</head>
+
+<body>
+
+  
+<script>
+var data = [{id: 1, name: "dog", parentId: null},
+	{id: 2, name: "Buddy", parentId: 1},
+	{id: 3, name: "Daisy", parentId: 1},
+	{id: 4, name: "cat", parentId: null},
+	{id: 5, name: "Smokey", parentId: 4},
+	{id: 6, name: "Oscar", parentId: 4}],
+tree = function (data, root) {
+      var r = {},
+          o = {};
+
+     data.forEach(function (a) {
+         if (a.parentId === root) {
+              r[a.name] = [];
+              o[a.id] = r[a.name];
+          } else {
+             o[a.parentId] = o[a.parentId] || [];
+              o[a.parentId].push({ name: a.name });
+          }
+     });
+      return r;
+}(data, null);
+
+console.log(tree);
+</script>
+
+</body>
+
+</html>

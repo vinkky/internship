@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Advanced 1</title>
+</head>
+<body>
+
+<script>
+
+var person = function(message) {
+
+  this.place = function(where) {
+    message += ` goes to ${where}`;
+    return this; // Allow chaining
+  }
+
+  this.movietitle = function(what) {
+    message += ` to watch movie ${what}`;
+    return this; // Allow chaining
+  }
+
+  this.value = function() {
+    return message; //End chain
+  }
+
+  return this; // Start chain
+
+}
+console.log(person("Adam").place("cinema").movietitle("xxx").value());
+</script>
+
+</body>
+</html>

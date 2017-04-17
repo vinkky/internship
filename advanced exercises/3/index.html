@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>advanced 3</title>
+    <style>canvas {border: 1px solid blue;}</style>
+</head>
+
+<body>
+
+  
+    <script>
+        var body = document.getElementsByTagName("body")[0];
+        var canvas = document.createElement("canvas");
+        var button = document.createElement("button");
+        button.innerHTML = "Create Rectangle";
+        canvas.height = 500;
+        canvas.width = 500;
+        var context = canvas.getContext("2d");
+        body.appendChild(canvas);
+        body.appendChild(button);
+        var rects = [];
+
+        function create() {
+            //  Opacity
+            context.globalAlpha = 0.7;
+            var color = '#' + Math.round(0xffffff * Math.random()).toString(16);
+            context.fillStyle = color;
+
+            //Each rectangle's size is (20 ~ 100, 20 ~ 100)
+            var coordx = Math.random() * canvas.width;
+            var coordy = Math.random() * canvas.width;
+            var width = Math.random() * 80 + 20;
+            var height = Math.random() * 80 + 20;
+
+            var rect = {
+                x: coordx,
+                y: coordy,
+                w: width,
+                h: height
+            }
+
+            var ok = true;
+            rects.forEach(function (item) {
+                if (isCollide(rect, item)) {
+                    console.log("collide");
+                    ok = false;
+                } else {
+                    console.log("no collision");
+                }
+            })
+
+            if (ok) {
+                context.fillRect(coordx, coordy, width, height);
+                rects.push(rect);
+            } else {
+                console.log('rect dropped');
+            }
+
+            console.log(rects);
+
+        }
+
+        function isCollide(a, b) {
+            return !(
+                ((a.y + a.h) < (b.y)) ||
+                (a.y > (b.y + b.h)) ||
+                ((a.x + a.w) < b.x) ||
+                (a.x > (b.x + b.w))
+            );
+        }
+        button.addEventListener('click', create);
+    </script>
+
+</body>
+
+</html>
